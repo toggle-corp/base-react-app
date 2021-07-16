@@ -1,0 +1,12 @@
+.app {
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    z-index: auto;
+    background-color: #ddffff;
+    width: 100vw;
+    height: 100vh;
+    color: #414141;
+}
