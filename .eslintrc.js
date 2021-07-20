@@ -9,9 +9,7 @@ const config = {
         browser: true,
     },
     plugins: [
-        /*
         'graphql',
-        */
         '@typescript-eslint',
         'postcss-modules',
     ],
@@ -101,5 +99,14 @@ const config = {
         'postcss-modules/no-undef-class': 'warn',
     },
 };
+try {
+    const introspectionSchema = require('./generated/schema.json');
+    config.rules['graphql/template-strings'] = ['error', {
+        env: 'apollo',
+        schemaJson: introspectionSchema,
+    }];
+} catch (e) {
+    // do nothing here
+}
 
 module.exports = config;

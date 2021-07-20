@@ -3,6 +3,7 @@ import { Router } from 'react-router-dom';
 import { init, ErrorBoundary, setUser as setUserOnSentry } from '@sentry/react';
 import { isNotDefined, unique } from '@togglecorp/fujs';
 import { AlertContainer, AlertContext, AlertOptions } from '@the-deep/deep-ui';
+import { ApolloClient, ApolloProvider } from '@apollo/client';
 
 import '@the-deep/deep-ui/build/index.css';
 
@@ -16,6 +17,7 @@ import { sync } from '#app/private-hooks/useAuthSync';
 import Navbar from '#app/public-components/Navbar';
 import Routes from '#app/public-components/Routes';
 import { User } from '#app/public-types/user';
+import apolloConfig from '#app/public-configs/apollo';
 
 import styles from './styles.css';
 
@@ -39,10 +41,11 @@ if (sentryConfig) {
     init(sentryConfig);
 }
 
+const apolloClient = new ApolloClient(apolloConfig);
+
 function App() {
     const [user, setUser] = useStoredState<User | undefined>('user', undefined);
-    // TODO: set this to false
-    const [ready, setReady] = useState(true);
+    const [ready, setReady] = useState(false);
 
     const [navbarState, setNavbarState] = useState(false);
 
@@ -144,48 +147,56 @@ function App() {
         [alerts, addAlert, updateAlertContent, removeAlert],
     );
 
+    let children;
+
     if (!ready) {
-        return (
+        children = (
             <MessagePage
                 content="Checking user session..."
             />
+        );
+    } else {
+        children = (
+            <Router history={browserHistory}>
+                {navbarState && (
+                    <Navbar className={styles.navbar} />
+                )}
+                <div className={styles.content}>
+                    <Suspense
+                        fallback={(
+                            <MessagePage
+                                content="Loading page..."
+                            />
+                        )}
+                    >
+                        <Routes />
+                    </Suspense>
+                </div>
+            </Router>
         );
     }
 
     return (
         <ErrorBoundary
+            showDialog
             fallback={(
                 <MessagePage
                     heading="Oops"
                     content="Some error occurred!"
                 />
             )}
-            showDialog
         >
-            <UserContext.Provider value={userContext}>
-                <AlertContext.Provider value={alertContext}>
-                    <AuthPopup />
-                    <div className={styles.alertContainer}>
-                        <AlertContainer />
-                    </div>
-                    <Router history={browserHistory}>
-                        {navbarState && (
-                            <Navbar className={styles.navbar} />
-                        )}
-                        <div className={styles.content}>
-                            <Suspense
-                                fallback={(
-                                    <MessagePage
-                                        content="Loading page..."
-                                    />
-                                )}
-                            >
-                                <Routes />
-                            </Suspense>
+            <ApolloProvider client={apolloClient}>
+                <UserContext.Provider value={userContext}>
+                    <AlertContext.Provider value={alertContext}>
+                        <AuthPopup />
+                        <div className={styles.alertContainer}>
+                            <AlertContainer />
                         </div>
-                    </Router>
-                </AlertContext.Provider>
-            </UserContext.Provider>
+                        {children}
+                    </AlertContext.Provider>
+                </UserContext.Provider>
+            </ApolloProvider>
         </ErrorBoundary>
     );
 }
