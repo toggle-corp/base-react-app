@@ -16,6 +16,8 @@
 
         "paths": {
             "#components/*": ["./src/components/*"],
+            "#views/*": ["./src/views/*"],
+            "#app/*": ["./src/App/*"],
         },
 
         "noFallthroughCasesInSwitch": true,

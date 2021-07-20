@@ -1,12 +1,19 @@
-.app {
+.navbar {
+    flex-shrink: 0;
+}
+
+.alert-container {
+    position: fixed,;
+    top: 0,;
+    right: 1px,;
+    z-index: 11,;
+    width: 320px,
+}
+
+.content {
     display: flex;
-    position: relative;
-    align-items: center;
     flex-direction: column;
-    justify-content: center;
-    z-index: auto;
-    background-color: #ddffff;
-    width: 100vw;
-    height: 100vh;
-    color: #414141;
+    flex-grow: 1;
+    z-index: 0;
+    overflow: auto;
 }
