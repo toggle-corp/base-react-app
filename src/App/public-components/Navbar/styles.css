@@ -1,0 +1,61 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    border-bottom: var(--dui-width-separator-thin) solid var(--dui-color-separator);
+    background-color: var(--dui-color-foreground);
+    height: 3.4rem;
+    overflow: auto;
+    color: var(--dui-color-text);
+
+    .app-brand {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        padding: 0 var(--dui-spacing-medium);
+        font-size: var(--dui-font-size-extra-large);
+    }
+
+    .main {
+        display: flex;
+        align-self: stretch;
+        flex-grow: 1;
+        overflow: auto;
+
+        .nav-links {
+            display: flex;
+            flex-grow: 1;
+            justify-content: flex-start;
+            padding: 0 calc(var(--dui-spacing-large) - var(--dui-spacing-small));
+            overflow: hidden;
+            font-size: var(--dui-font-size-medium);
+
+            .link {
+                display: flex;
+                align-items: center;
+                outline: none;
+                border-top: var(--dui-width-separator-medium) solid transparent;
+                border-bottom: var(--dui-width-separator-medium) solid transparent;
+                padding: var(--dui-spacing-small) var(--dui-spacing-medium);
+                text-transform: uppercase;
+                text-decoration: none;
+                color: var(--dui-color-text);
+                font-weight: var(--dui-font-weight-bold);
+
+                &.active {
+                    border-bottom-color: var(--dui-color-accent);
+                }
+            }
+        }
+    }
+
+    .actions {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        padding: 0 var(--dui-spacing-medium);
+
+        &>* {
+            margin-left: var(--dui-spacing-small);
+        }
+    }
+}

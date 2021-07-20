@@ -17,6 +17,8 @@
             "extensions": [".js", ".jsx", ".ts", ".tsx"],
             "alias": {
                 "#components": "./src/components",
+                "#views": "./src/views",
+                "#app": "./src/App",
             },
         }],
 

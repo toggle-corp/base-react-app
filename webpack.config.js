@@ -97,6 +97,14 @@ module.exports = () => {
                     ],
                 },
                 {
+                    test: /\.css$/,
+                    include: getPath('node_modules/'),
+                    use: [
+                        isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+                        'css-loader',
+                    ],
+                },
+                {
                     test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
                     exclude: /(node_modules)/,
                     include: getPath('src/'),
@@ -115,6 +123,7 @@ module.exports = () => {
             new EnvironmentPlugin({
                 MY_APP: pkg.name,
                 MY_APP_DESCRIPTION: pkg.description,
+
                 REACT_APP_VERSION: gitRevisionPlugin.version(),
                 REACT_APP_COMMITHASH: gitRevisionPlugin.commithash(),
                 REACT_APP_BRANCH: gitRevisionPlugin.branch(),
