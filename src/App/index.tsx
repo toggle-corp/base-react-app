@@ -7,6 +7,7 @@ import { ApolloClient, ApolloProvider } from '@apollo/client';
 
 import '@the-deep/deep-ui/build/index.css';
 
+import Init from '#app/public-components/Init';
 import MessagePage from '#app/components/MessagePage';
 import browserHistory from '#app/configs/history';
 import sentryConfig from '#app/configs/sentry';
@@ -151,9 +152,7 @@ function App() {
 
     if (!ready) {
         children = (
-            <MessagePage
-                content="Checking user session..."
-            />
+            <Init />
         );
     } else {
         children = (
