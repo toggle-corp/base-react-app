@@ -1,7 +1,7 @@
 {
     "name": "base-react-app",
     "version": "1.0.0",
-    "description": "Base Reacct Application",
+    "description": "Base React Application",
     "scripts": {
         "lint": "eslint ./src",
         "typecheck": "tsc",
@@ -29,6 +29,7 @@
     "dependencies": {
         "@apollo/client": "^3.3.21",
         "@togglecorp/fujs": "^1.9.2-beta.0",
+        "@togglecorp/toggle-form": "^1.0.0",
         "apollo-link": "^1.2.14",
         "apollo-link-batch-http": "^1.2.14",
         "apollo-link-rest": "^0.8.0-beta.0",

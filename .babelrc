@@ -13,6 +13,7 @@
             "root": ["."],
             "extensions": [".js", ".jsx", ".ts", ".tsx"],
             "alias": {
+                "#generated": "./generated",
                 "#components": "./src/components",
                 "#views": "./src/views",
                 "#app": "./src/App",

@@ -1,6 +1,5 @@
-import React, { useContext, useCallback } from 'react';
+import React, { useContext } from 'react';
 import { _cs } from '@togglecorp/fujs';
-import { Button } from '@the-deep/deep-ui';
 
 import NavLink from '#app/components/NavLink';
 import { UserContext } from '#app/context/UserContext';
@@ -17,26 +16,8 @@ function Navbar(props: Props) {
 
     const {
         authenticated,
-        setUser,
         user,
     } = useContext(UserContext);
-
-    const handleLogout = useCallback(
-        () => {
-            setUser(undefined);
-        },
-        [setUser],
-    );
-    const handleLogin = useCallback(
-        () => {
-            setUser({
-                id: 1,
-                name: 'Ram Bahadur',
-                permissions: [],
-            });
-        },
-        [setUser],
-    );
 
     return (
         <nav className={_cs(className, styles.navbar)}>
@@ -62,26 +43,8 @@ function Navbar(props: Props) {
             <div className={styles.actions}>
                 {authenticated && user && (
                     <div>
-                        {user.name}
+                        {user.displayName ?? 'Anon'}
                     </div>
-                )}
-                {authenticated && (
-                    <Button
-                        name={undefined}
-                        onClick={handleLogout}
-                        variant="secondary"
-                    >
-                        Logout
-                    </Button>
-                )}
-                {!authenticated && (
-                    <Button
-                        name={undefined}
-                        onClick={handleLogin}
-                        variant="secondary"
-                    >
-                        Login
-                    </Button>
                 )}
             </div>
         </nav>

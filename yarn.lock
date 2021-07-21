@@ -2276,6 +2276,15 @@
   dependencies:
     "@babel/runtime" "^7.7.7"
 
+"@togglecorp/toggle-form@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@togglecorp/toggle-form/-/toggle-form-1.0.0.tgz#79ac1eadeb384e9aefb91282f969cb0692faaea2"
+  integrity sha512-gGQZ76OjSovFO172w3qTq6efgDteGJtxganxkPKP4UJLnSPuqeWyrnkRorhS5hbik9BNZ0nQS1p+qIgGWaGV8Q==
+  dependencies:
+    "@babel/runtime-corejs3" "^7.11.2"
+    "@storybook/client-api" "^6.0.21"
+    "@togglecorp/fujs" "^1.9.2-beta.0"
+
 "@tootallnate/once@1":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
