@@ -4,7 +4,7 @@
         "jsx": "react",
         "module": "esnext",
         "noEmit": true,
-        "rootDir": "./src",
+        "rootDir": ".",
         "target": "esnext",
 
         "strict": true,
@@ -15,6 +15,7 @@
         "moduleResolution": "node",
 
         "paths": {
+            "#generated/*": ["./generated/*"],
             "#components/*": ["./src/components/*"],
             "#views/*": ["./src/views/*"],
             "#app/*": ["./src/App/*"],
@@ -30,6 +31,7 @@
         "skipLibCheck": true
     },
     "include": [
-        "src"
+        "src",
+        "generated"
     ]
 }

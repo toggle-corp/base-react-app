@@ -12,7 +12,6 @@ import MessagePage from '#app/components/MessagePage';
 import browserHistory from '#app/configs/history';
 import sentryConfig from '#app/configs/sentry';
 import { UserContext, UserContextInterface } from '#app/context/UserContext';
-import useStoredState from '#app/hooks/useStoredState';
 import AuthPopup from '#app/private-components/AuthPopup';
 import { sync } from '#app/private-hooks/useAuthSync';
 import Navbar from '#app/public-components/Navbar';
@@ -45,7 +44,7 @@ if (sentryConfig) {
 const apolloClient = new ApolloClient(apolloConfig);
 
 function App() {
-    const [user, setUser] = useStoredState<User | undefined>('user', undefined);
+    const [user, setUser] = useState<User | undefined>();
     const [ready, setReady] = useState(false);
 
     const [navbarState, setNavbarState] = useState(false);

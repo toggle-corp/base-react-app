@@ -1,6 +1,8 @@
 export interface User {
-    id: number;
     permissions: unknown[],
 
-    name: string;
+    id: string;
+    lastActiveProject?: string;
+    displayName?: string;
+    displayPictureUrl?: string;
 }
