@@ -3,7 +3,7 @@ import { useQuery, gql } from '@apollo/client';
 import { removeNull } from '@togglecorp/toggle-form';
 
 import { UserContext } from '#app/context/UserContext';
-import MessagePage from '#app/components/MessagePage';
+import PreloadMessage from '#app/components/PreloadMessage';
 
 import {
     MeQuery,
@@ -20,7 +20,11 @@ const ME = gql`
     }
 `;
 
-function Init() {
+interface Props {
+    className?: string;
+}
+function Init(props: Props) {
+    const { className } = props;
     const {
         setReady,
         setUser,
@@ -41,14 +45,16 @@ function Init() {
 
     if (error) {
         return (
-            <MessagePage
+            <PreloadMessage
+                className={className}
                 content="Some error occurred"
             />
         );
     }
 
     return (
-        <MessagePage
+        <PreloadMessage
+            className={className}
             content="Checking user session..."
         />
     );

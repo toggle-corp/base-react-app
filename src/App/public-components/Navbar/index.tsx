@@ -1,15 +1,17 @@
 import React, { useContext } from 'react';
 import { _cs } from '@togglecorp/fujs';
 
-import NavLink from '#app/components/NavLink';
+import SmartNavLink from '#app/components/SmartNavLink';
 import { UserContext } from '#app/context/UserContext';
-import route from '#app/public-configs/routes';
+import getRouteSettings from '#app/public-configs/routes';
 
 import styles from './styles.css';
 
 interface Props {
     className?: string;
 }
+
+const route = getRouteSettings();
 
 function Navbar(props: Props) {
     const { className } = props;
@@ -26,13 +28,13 @@ function Navbar(props: Props) {
             </div>
             <div className={styles.main}>
                 <div className={styles.navLinks}>
-                    <NavLink
+                    <SmartNavLink
                         exact
                         className={styles.link}
                         activeClassName={styles.active}
                         route={route.dashboard}
                     />
-                    <NavLink
+                    <SmartNavLink
                         exact
                         className={styles.link}
                         activeClassName={styles.active}
@@ -42,7 +44,7 @@ function Navbar(props: Props) {
             </div>
             <div className={styles.actions}>
                 {authenticated && user && (
-                    <div>
+                    <div className={styles.userDisplayName}>
                         {user.displayName ?? 'Anon'}
                     </div>
                 )}

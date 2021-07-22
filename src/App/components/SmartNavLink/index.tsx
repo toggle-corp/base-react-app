@@ -6,13 +6,13 @@ import useRouteMatching, {
     Attrs,
 } from '#app/private-hooks/useRouteMatching';
 
-type SmartNavLinkProps = Omit<NavLinkProps, 'to'> & {
+export type Props = Omit<NavLinkProps, 'to'> & {
     route: RouteData;
     attrs?: Attrs;
     children?: React.ReactNode;
 };
 
-function SmartNavLink(props: SmartNavLinkProps) {
+function SmartNavLink(props: Props) {
     const {
         route,
         attrs,

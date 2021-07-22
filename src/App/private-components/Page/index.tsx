@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import MessagePage from '#app/components/MessagePage';
+import PreloadMessage from '#app/components/PreloadMessage';
 import { UserContext } from '#app/context/UserContext';
 import PageTitle from '#app/private-components/PageTitle';
 import { User } from '#app/public-types/user';
@@ -77,7 +77,7 @@ function Page<T extends { className?: string }>(props: Props<T>) {
         return (
             <>
                 <PageTitle value={`403 - ${title}`} />
-                <MessagePage
+                <PreloadMessage
                     heading="403"
                     content="Unauthorized"
                 />

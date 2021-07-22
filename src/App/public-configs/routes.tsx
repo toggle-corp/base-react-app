@@ -1,14 +1,19 @@
 import { lazy } from 'react';
 import { wrap } from '#app/private-utils/routes';
 
-const routeSettings = {
+interface CommonProps {
+    className?: string;
+}
+
+const getRouteSettings = (commonProps?: CommonProps) => ({
     dashboard: wrap({
         path: '/',
         title: 'Dashboard',
         navbarVisibility: true,
-        component: lazy(() => import('#app/components/MessagePage')),
+        component: lazy(() => import('#app/components/PreloadMessage')),
         componentProps: {
             content: 'Dashboard',
+            ...commonProps,
         },
         visibility: 'is-authenticated',
     }),
@@ -16,9 +21,10 @@ const routeSettings = {
         path: '/about/',
         title: 'About',
         navbarVisibility: true,
-        component: lazy(() => import('#app/components/MessagePage')),
+        component: lazy(() => import('#app/components/PreloadMessage')),
         componentProps: {
             content: 'About',
+            ...commonProps,
         },
         visibility: 'is-authenticated',
     }),
@@ -26,9 +32,10 @@ const routeSettings = {
         path: '/login/',
         title: 'Login',
         navbarVisibility: true,
-        component: lazy(() => import('#app/components/MessagePage')),
+        component: lazy(() => import('#app/components/PreloadMessage')),
         componentProps: {
             content: 'Login',
+            ...commonProps,
         },
         visibility: 'is-not-authenticated',
     }),
@@ -36,9 +43,10 @@ const routeSettings = {
         path: '/register/',
         title: 'Register',
         navbarVisibility: false,
-        component: lazy(() => import('#app/components/MessagePage')),
+        component: lazy(() => import('#app/components/PreloadMessage')),
         componentProps: {
             content: 'Register',
+            ...commonProps,
         },
         visibility: 'is-not-authenticated',
     }),
@@ -46,9 +54,10 @@ const routeSettings = {
         path: '/forgot-password/',
         title: 'Forgot Password',
         navbarVisibility: false,
-        component: lazy(() => import('#app/components/MessagePage')),
+        component: lazy(() => import('#app/components/PreloadMessage')),
         componentProps: {
             content: 'Forgot Password',
+            ...commonProps,
         },
         visibility: 'is-not-authenticated',
     }),
@@ -56,9 +65,10 @@ const routeSettings = {
         path: '/reset-password/:userId/:resetToken/',
         title: 'Reset Password',
         navbarVisibility: false,
-        component: lazy(() => import('#app/components/MessagePage')),
+        component: lazy(() => import('#app/components/PreloadMessage')),
         componentProps: {
             content: 'Reset Password',
+            ...commonProps,
         },
         visibility: 'is-not-authenticated',
     }),
@@ -66,10 +76,11 @@ const routeSettings = {
         path: '/projects/:projectid(\\d+)/',
         title: 'Project',
         navbarVisibility: true,
-        component: lazy(() => import('#app/components/MessagePage')),
+        component: lazy(() => import('#app/components/PreloadMessage')),
         visibility: 'is-authenticated',
         componentProps: {
             content: 'Project',
+            ...commonProps,
         },
         // checkPermissions: (permissions) => permissions.entry?.change,
     }),
@@ -77,11 +88,13 @@ const routeSettings = {
     fourHundredFour: wrap({
         path: '*',
         title: '404',
-        component: lazy(() => import('#app/components/MessagePage')),
-        componentProps: {},
+        component: lazy(() => import('#app/components/PreloadMessage')),
+        componentProps: {
+            ...commonProps,
+        },
         visibility: 'is-anything',
         navbarVisibility: true,
     }),
-};
+});
 
-export default routeSettings;
+export default getRouteSettings;

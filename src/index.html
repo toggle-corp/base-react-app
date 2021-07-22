@@ -13,12 +13,9 @@
                 box-sizing: border-box;
             }
 
-            #app {
+            #app-container {
                 font-family: 'Source Sans Pro', sans-serif;
-                display: flex;
                 position: relative;
-                flex-direction: column;
-                z-index: auto;
                 width: 100vw;
                 height: 100vh;
             }
@@ -29,7 +26,7 @@
         <noscript>
             <%= process.env.MY_APP %> needs JS.
         </noscript>
-        <div id="app"></div>
+        <div id="app-container"></div>
 
         <link href="https://fonts.googleapis.com/css?family=Oxygen+Mono|Source+Sans+Pro:300,400,600" rel="stylesheet">
 
