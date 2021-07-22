@@ -1,18 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import getRouteSettings from '#app/public-configs/routes';
+import routes from '#app/public-configs/routes';
 
-interface Props {
-    className?: string;
-}
-
-function Routes(props: Props) {
-    const { className } = props;
-    const routes = getRouteSettings({
-        className,
-    });
-
+function Routes() {
     return (
         <Switch>
             <Route

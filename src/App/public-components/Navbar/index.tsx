@@ -3,15 +3,13 @@ import { _cs } from '@togglecorp/fujs';
 
 import SmartNavLink from '#app/components/SmartNavLink';
 import { UserContext } from '#app/context/UserContext';
-import getRouteSettings from '#app/public-configs/routes';
+import route from '#app/public-configs/routes';
 
 import styles from './styles.css';
 
 interface Props {
     className?: string;
 }
-
-const route = getRouteSettings();
 
 function Navbar(props: Props) {
     const { className } = props;
