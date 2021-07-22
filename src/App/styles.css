@@ -9,11 +9,10 @@
         height: 3.4rem;
     }
 
-    .page-content {
-        flex-grow: 1;
-        overflow: auto;
-    }
-
+    /*
+     *  NOTE: styling for view is located in
+     *  `/public-configs/routes/styles.css`
+     */
     .preload-message,
     .init {
         flex-grow: 1;

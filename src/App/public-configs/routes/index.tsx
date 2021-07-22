@@ -1,11 +1,8 @@
 import { lazy } from 'react';
 import { wrap } from '#app/private-utils/routes';
+import styles from './styles.css';
 
-interface CommonProps {
-    className?: string;
-}
-
-const getRouteSettings = (commonProps?: CommonProps) => ({
+const routes = {
     dashboard: wrap({
         path: '/',
         title: 'Dashboard',
@@ -13,7 +10,7 @@ const getRouteSettings = (commonProps?: CommonProps) => ({
         component: lazy(() => import('#app/components/PreloadMessage')),
         componentProps: {
             content: 'Dashboard',
-            ...commonProps,
+            className: styles.view,
         },
         visibility: 'is-authenticated',
     }),
@@ -24,7 +21,7 @@ const getRouteSettings = (commonProps?: CommonProps) => ({
         component: lazy(() => import('#app/components/PreloadMessage')),
         componentProps: {
             content: 'About',
-            ...commonProps,
+            className: styles.view,
         },
         visibility: 'is-authenticated',
     }),
@@ -35,7 +32,7 @@ const getRouteSettings = (commonProps?: CommonProps) => ({
         component: lazy(() => import('#app/components/PreloadMessage')),
         componentProps: {
             content: 'Login',
-            ...commonProps,
+            className: styles.view,
         },
         visibility: 'is-not-authenticated',
     }),
@@ -46,7 +43,7 @@ const getRouteSettings = (commonProps?: CommonProps) => ({
         component: lazy(() => import('#app/components/PreloadMessage')),
         componentProps: {
             content: 'Register',
-            ...commonProps,
+            className: styles.view,
         },
         visibility: 'is-not-authenticated',
     }),
@@ -57,7 +54,7 @@ const getRouteSettings = (commonProps?: CommonProps) => ({
         component: lazy(() => import('#app/components/PreloadMessage')),
         componentProps: {
             content: 'Forgot Password',
-            ...commonProps,
+            className: styles.view,
         },
         visibility: 'is-not-authenticated',
     }),
@@ -68,7 +65,7 @@ const getRouteSettings = (commonProps?: CommonProps) => ({
         component: lazy(() => import('#app/components/PreloadMessage')),
         componentProps: {
             content: 'Reset Password',
-            ...commonProps,
+            className: styles.view,
         },
         visibility: 'is-not-authenticated',
     }),
@@ -80,7 +77,7 @@ const getRouteSettings = (commonProps?: CommonProps) => ({
         visibility: 'is-authenticated',
         componentProps: {
             content: 'Project',
-            ...commonProps,
+            className: styles.view,
         },
         // checkPermissions: (permissions) => permissions.entry?.change,
     }),
@@ -90,11 +87,11 @@ const getRouteSettings = (commonProps?: CommonProps) => ({
         title: '404',
         component: lazy(() => import('#app/components/PreloadMessage')),
         componentProps: {
-            ...commonProps,
+            className: styles.view,
         },
         visibility: 'is-anything',
         navbarVisibility: true,
     }),
-});
+};
 
-export default getRouteSettings;
+export default routes;

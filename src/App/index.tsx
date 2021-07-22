@@ -167,7 +167,11 @@ function App() {
                         />
                     )}
                 >
-                    <Routes className={styles.pageContent} />
+                    {/*
+                      * NOTE: styling for view is located in
+                      * `/public-configs/routes/styles.css`
+                      */}
+                    <Routes />
                 </Suspense>
             </Router>
         );
