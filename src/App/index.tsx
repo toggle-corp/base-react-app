@@ -8,7 +8,7 @@ import { ApolloClient, ApolloProvider } from '@apollo/client';
 import '@the-deep/deep-ui/build/index.css';
 
 import Init from '#app/public-components/Init';
-import MessagePage from '#app/components/MessagePage';
+import PreloadMessage from '#app/components/PreloadMessage';
 import browserHistory from '#app/configs/history';
 import sentryConfig from '#app/configs/sentry';
 import { UserContext, UserContextInterface } from '#app/context/UserContext';
@@ -151,7 +151,7 @@ function App() {
 
     if (!ready) {
         children = (
-            <Init />
+            <Init className={styles.init} />
         );
     } else {
         children = (
@@ -159,43 +159,42 @@ function App() {
                 {navbarState && (
                     <Navbar className={styles.navbar} />
                 )}
-                <div className={styles.content}>
-                    <Suspense
-                        fallback={(
-                            <MessagePage
-                                content="Loading page..."
-                            />
-                        )}
-                    >
-                        <Routes />
-                    </Suspense>
-                </div>
+                <Suspense
+                    fallback={(
+                        <PreloadMessage
+                            className={styles.preloadMessage}
+                            content="Loading page..."
+                        />
+                    )}
+                >
+                    <Routes className={styles.pageContent} />
+                </Suspense>
             </Router>
         );
     }
 
     return (
-        <ErrorBoundary
-            showDialog
-            fallback={(
-                <MessagePage
-                    heading="Oops"
-                    content="Some error occurred!"
-                />
-            )}
-        >
-            <ApolloProvider client={apolloClient}>
-                <UserContext.Provider value={userContext}>
-                    <AlertContext.Provider value={alertContext}>
-                        <AuthPopup />
-                        <div className={styles.alertContainer}>
-                            <AlertContainer />
-                        </div>
-                        {children}
-                    </AlertContext.Provider>
-                </UserContext.Provider>
-            </ApolloProvider>
-        </ErrorBoundary>
+        <div className={styles.app}>
+            <ErrorBoundary
+                showDialog
+                fallback={(
+                    <PreloadMessage
+                        heading="Oops"
+                        content="Some error occurred!"
+                    />
+                )}
+            >
+                <ApolloProvider client={apolloClient}>
+                    <UserContext.Provider value={userContext}>
+                        <AlertContext.Provider value={alertContext}>
+                            <AuthPopup />
+                            <AlertContainer className={styles.alertContainer} />
+                            {children}
+                        </AlertContext.Provider>
+                    </UserContext.Provider>
+                </ApolloProvider>
+            </ErrorBoundary>
+        </div>
     );
 }
 
