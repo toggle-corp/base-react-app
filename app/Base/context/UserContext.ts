@@ -9,6 +9,8 @@ export interface UserContextInterface {
 
     ready: boolean;
     setReady: React.Dispatch<React.SetStateAction<boolean>>;
+    errored: boolean;
+    setErrored: React.Dispatch<React.SetStateAction<boolean>>;
 
     navbarState: boolean;
     setNavbarState: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,6 +22,11 @@ export const UserContext = createContext<UserContextInterface>({
     setUser: (value: unknown) => {
         // eslint-disable-next-line no-console
         console.error('setUser called on UserContext without a provider', value);
+    },
+    errored: false,
+    setErrored: (value: unknown) => {
+        // eslint-disable-next-line no-console
+        console.error('setErrored called on UserContext without a provider', value);
     },
     ready: false,
     setReady: (value: unknown) => {

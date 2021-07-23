@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { removeNull } from '@togglecorp/toggle-form';
 
@@ -29,10 +29,9 @@ function Init(props: Props) {
 
     const {
         setReady,
+        setErrored,
         setUser,
     } = useContext(UserContext);
-
-    const [errored, setErrored] = useState(false);
 
     useQuery<MeQuery>(ME, {
         fetchPolicy: 'network-only',
@@ -47,25 +46,16 @@ function Init(props: Props) {
         },
         onError: (error) => {
             const { graphQLErrors } = error;
-            const meErrored = checkErrorCode(
+            const authError = checkErrorCode(
                 graphQLErrors,
                 ['me'],
                 '401',
             );
 
-            setErrored(meErrored);
+            setErrored(!authError);
             setReady(true);
         },
     });
-
-    if (errored) {
-        return (
-            <PreloadMessage
-                className={className}
-                content="Some error occurred"
-            />
-        );
-    }
 
     return (
         <PreloadMessage

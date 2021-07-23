@@ -46,6 +46,7 @@ const apolloClient = new ApolloClient(apolloConfig);
 function Base() {
     const [user, setUser] = useState<User | undefined>();
     const [ready, setReady] = useState(false);
+    const [errored, setErrored] = useState(false);
 
     const [navbarState, setNavbarState] = useState(false);
 
@@ -80,10 +81,21 @@ function Base() {
             setUser: setUserWithSentry,
             ready,
             setReady,
+            errored,
+            setErrored,
             navbarState,
             setNavbarState,
         }),
-        [authenticated, user, setUserWithSentry, ready, navbarState, setNavbarState],
+        [
+            authenticated,
+            user,
+            setUserWithSentry,
+            ready,
+            navbarState,
+            setNavbarState,
+            errored,
+            setErrored,
+        ],
     );
 
     const [alerts, setAlerts] = React.useState<AlertOptions[]>([]);
@@ -152,6 +164,13 @@ function Base() {
     if (!ready) {
         children = (
             <Init className={styles.init} />
+        );
+    } else if (errored) {
+        return (
+            <PreloadMessage
+                className={styles.init}
+                content="Some error occurred"
+            />
         );
     } else {
         children = (
