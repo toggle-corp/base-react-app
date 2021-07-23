@@ -10,7 +10,7 @@
         display: flex;
         align-items: center;
         flex-shrink: 0;
-        padding: 0 var(--dui-spacing-medium);
+        padding: 0 var(--dui-spacing-large);
         font-size: var(--dui-font-size-extra-large);
     }
 
@@ -24,25 +24,12 @@
             display: flex;
             flex-grow: 1;
             justify-content: flex-start;
-            padding: 0 calc(var(--dui-spacing-large) - var(--dui-spacing-small));
+            padding: 0 calc(var(--dui-spacing-large) - var(--dui-spacing-medium));
             overflow: hidden;
             font-size: var(--dui-font-size-medium);
 
             .link {
-                display: flex;
-                align-items: center;
-                outline: none;
-                border-top: var(--dui-width-separator-medium) solid transparent;
-                border-bottom: var(--dui-width-separator-medium) solid transparent;
-                padding: var(--dui-spacing-small) var(--dui-spacing-medium);
-                text-transform: uppercase;
-                text-decoration: none;
-                color: var(--dui-color-text);
-                font-weight: var(--dui-font-weight-bold);
-
-                &.active {
-                    border-bottom-color: var(--dui-color-accent);
-                }
+                margin: 0 var(--dui-spacing-medium);
             }
         }
     }
@@ -51,15 +38,26 @@
         display: flex;
         align-items: center;
         flex-shrink: 0;
-        padding: 0 var(--dui-spacing-medium);
+        padding: 0 calc(var(--dui-spacing-large) - var(--dui-spacing-small));
 
-        &>* {
-            margin-left: var(--dui-spacing-small);
+        >* {
+            margin: 0 var(--dui-spacing-small);
         }
+    }
+
+    .user-menu {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        padding: 0 var(--dui-spacing-large);
 
         .user-display-name {
             color: var(--dui-color-text-message);
             font-weight: var(--dui-font-weight-bold);
         }
     }
+}
+
+.notification-content {
+    padding: var(--dui-spacing-large);
 }
