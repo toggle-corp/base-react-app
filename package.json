@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Base React Application",
     "scripts": {
-        "lint": "eslint ./src",
+        "lint": "eslint ./app",
         "typecheck": "tsc",
         "generate": "env-cmd -f .env graphql-codegen --config codegen.yml",
         "build": "webpack --mode=production --node-env=production",

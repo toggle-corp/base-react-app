@@ -14,9 +14,9 @@
             "extensions": [".js", ".jsx", ".ts", ".tsx"],
             "alias": {
                 "#generated": "./generated",
-                "#components": "./src/components",
-                "#views": "./src/views",
-                "#app": "./src/App",
+                "#components": "./app/components",
+                "#views": "./app/views",
+                "#base": "./app/Base",
             },
         }],
 
