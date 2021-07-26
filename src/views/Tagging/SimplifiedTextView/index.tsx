@@ -33,11 +33,13 @@ interface Props {
     text?: string;
     entries?: Entry[];
     onAddButtonClick?: (selectedText: string) => void;
-    onExcerptChange?: (entryClientId: Entry['clientId'], newExcerpt) => void;
+    onExcerptChange?: (entryClientId: Entry['clientId'], newExcerpt: string) => void;
     activeEntryClientId?: Entry['clientId'];
     onExcerptClick?: (entryClientId: Entry['clientId']) => void;
-    onCreateButtonClick?: (entryClientId: Entry['clientId']) => void;
-    onRemoveButtonClick?: (entryClientId: Entry['clientId']) => void;
+    onApproveButtonClick?: (entryClientId: Entry['clientId']) => void;
+    onDiscardButtonClick?: (entryClientId: Entry['clientId']) => void;
+    disableApproveButton?: boolean;
+    disableDiscardButton?: boolean;
 }
 
 function SimplifiedTextView(props: Props) {
@@ -49,8 +51,10 @@ function SimplifiedTextView(props: Props) {
         onExcerptChange,
         activeEntryClientId,
         onExcerptClick,
-        onCreateButtonClick,
-        onRemoveButtonClick,
+        onApproveButtonClick,
+        onDiscardButtonClick,
+        disableApproveButton,
+        disableDiscardButton,
     } = props;
 
     // TODO: Remove overlapping splits if necessary
@@ -106,8 +110,10 @@ function SimplifiedTextView(props: Props) {
                             excerpt={split.excerpt}
                             droppedExcerpt={split.droppedExcerpt}
                             onExcerptChange={onExcerptChange}
-                            onCreateButtonClick={onCreateButtonClick}
-                            onRemoveButtonClick={onRemoveButtonClick}
+                            onApproveButtonClick={onApproveButtonClick}
+                            onDiscardButtonClick={onDiscardButtonClick}
+                            disableApproveButton={disableApproveButton}
+                            disableDiscardButton={disableDiscardButton}
                         />
                     </React.Fragment>
                 ))}

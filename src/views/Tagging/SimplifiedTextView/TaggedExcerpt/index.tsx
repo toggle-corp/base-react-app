@@ -23,12 +23,14 @@ interface TaggedExcerptProps<K extends string> {
     entryId: K;
     isActive?: boolean;
     onClick?: (entryId: K) => void;
-    onCreateButtonClick?: QuickActionButtonProps<K>['onClick'];
-    onRemoveButtonClick?: QuickActionButtonProps<K>['onClick'];
+    onApproveButtonClick?: QuickActionButtonProps<K>['onClick'];
+    onDiscardButtonClick?: QuickActionButtonProps<K>['onClick'];
     className?: string;
     droppedExcerpt?: string;
     excerpt?: string;
     onExcerptChange?: (entryId: K, modifiedExcerpt: string) => void;
+    disableApproveButton?: boolean;
+    disableDiscardButton?: boolean;
 }
 
 function TaggedExcerpt<K extends string>(props: TaggedExcerptProps<K>) {
@@ -39,19 +41,25 @@ function TaggedExcerpt<K extends string>(props: TaggedExcerptProps<K>) {
         excerpt: excerptFromProps,
         isActive,
         onClick,
-        onCreateButtonClick,
-        onRemoveButtonClick,
+        onApproveButtonClick,
+        onDiscardButtonClick,
         onExcerptChange,
+        disableApproveButton,
+        disableDiscardButton,
     } = props;
 
     const [excerpt, setExcerpt] = useInputState(excerptFromProps);
 
     const handleClick = React.useCallback(() => {
-        onClick(entryId);
+        if (onClick) {
+            onClick(entryId);
+        }
     }, [entryId, onClick]);
 
     const handleExcerptChange = React.useCallback((modifiedExcerpt) => {
-        onExcerptChange(entryId, modifiedExcerpt);
+        if (onExcerptChange) {
+            onExcerptChange(entryId, modifiedExcerpt);
+        }
     }, [entryId, onExcerptChange]);
 
     return (
@@ -74,14 +82,16 @@ function TaggedExcerpt<K extends string>(props: TaggedExcerptProps<K>) {
                         <>
                             <QuickActionButton
                                 name={entryId}
-                                onClick={onRemoveButtonClick}
+                                onClick={onDiscardButtonClick}
+                                disabled={disableDiscardButton}
                             >
                                 <IoClose />
                             </QuickActionButton>
                             <QuickActionButton
                                 name={entryId}
-                                onClick={onCreateButtonClick}
+                                onClick={onApproveButtonClick}
                                 variant="primary"
+                                disabled={disableApproveButton}
                             >
                                 <IoCheckmark />
                             </QuickActionButton>
