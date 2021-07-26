@@ -40,7 +40,7 @@ const defaultEntries = [
     },
     {
         clientId: '3',
-        excerpt: 'spreading like wildfire in Southeast Asia',
+        excerpt: 'spreading like wildfire in Southeast Asia wooohoo',
         droppedExcerpt: 'spreading like wildfire in Southeast Asia',
     },
 ];
@@ -58,7 +58,7 @@ function Tagging(props: Props) {
     const [entries, setEntries] = React.useState<Entry[]>(defaultEntries);
 
     const handleAddButtonClick = React.useCallback((excerpt) => {
-        window.getSelection().removeAllRanges();
+        window.getSelection()?.removeAllRanges();
         setEntries((oldEntries) => ([
             ...oldEntries,
             {

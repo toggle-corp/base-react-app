@@ -4,6 +4,7 @@ import {
     IoCheckmark,
     IoPencil,
 } from 'react-icons/io5';
+import { BsFileDiff } from 'react-icons/bs';
 import { _cs } from '@togglecorp/fujs';
 import {
     Footer,
@@ -85,6 +86,29 @@ function TaggedExcerpt<K extends string>(props: TaggedExcerptProps<K>) {
                                 <IoCheckmark />
                             </QuickActionButton>
                             <QuickActionDropdownMenu
+                                label={<BsFileDiff />}
+                                disabled={droppedExcerpt === excerpt}
+                                popupClassName={styles.diffExcerptPopup}
+                                popupContentClassName={styles.content}
+                            >
+                                <div className={styles.excerpt}>
+                                    <Heading size="small">
+                                        Original
+                                    </Heading>
+                                    <div className={styles.text}>
+                                        {droppedExcerpt}
+                                    </div>
+                                </div>
+                                <div className={styles.excerpt}>
+                                    <Heading size="small">
+                                        Modified
+                                    </Heading>
+                                    <div className={styles.text}>
+                                        {excerpt}
+                                    </div>
+                                </div>
+                            </QuickActionDropdownMenu>
+                            <QuickActionDropdownMenu
                                 label={<IoPencil />}
                                 popupClassName={styles.editExcerptPopup}
                                 popupContentClassName={styles.content}
@@ -94,7 +118,7 @@ function TaggedExcerpt<K extends string>(props: TaggedExcerptProps<K>) {
                                 </Heading>
                                 <TextArea
                                     className={styles.excerptTextArea}
-                                    name={undefined}
+                                    name="modified-excerpt"
                                     value={excerpt}
                                     onChange={setExcerpt}
                                     rows={4}
