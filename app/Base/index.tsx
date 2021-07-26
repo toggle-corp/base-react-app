@@ -166,7 +166,7 @@ function Base() {
             <Init className={styles.init} />
         );
     } else if (errored) {
-        return (
+        children = (
             <PreloadMessage
                 className={styles.init}
                 content="Some error occurred"
