@@ -40,6 +40,7 @@
         "graphql-anywhere": "^4.2.7",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
+        "react-ga": "^3.3.0",
         "react-icons": "^4.2.0",
         "use-text-selection": "^1.1.3"
     },

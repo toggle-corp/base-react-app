@@ -8,8 +8,8 @@ import routes from '#base/public-configs/routes';
 const appCommitHash = process.env.REACT_APP_COMMITHASH;
 const appName = process.env.MY_APP;
 
-const sentryDsn = process.env.REACT_APP_SENTRY_DSN;
-const env = process.env.REACT_APP_ENV;
+const sentryDsn = 'https://9a60f35c6a1c45fe999727c5f6f7229c@sentry.io/1220157';
+const env = process.env.REACT_APP_DEEP_ENVIRONMENT;
 const sentryConfig: BrowserOptions | undefined = sentryDsn ? {
     dsn: sentryDsn,
     release: `${appName}@${appCommitHash}`,

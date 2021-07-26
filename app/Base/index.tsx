@@ -4,6 +4,7 @@ import { init, ErrorBoundary, setUser as setUserOnSentry } from '@sentry/react';
 import { isNotDefined, unique } from '@togglecorp/fujs';
 import { AlertContainer, AlertContext, AlertOptions } from '@the-deep/deep-ui';
 import { ApolloClient, ApolloProvider } from '@apollo/client';
+import ReactGA from 'react-ga';
 
 import '@the-deep/deep-ui/build/index.css';
 
@@ -18,19 +19,20 @@ import Navbar from '#base/public-components/Navbar';
 import Routes from '#base/public-components/Routes';
 import { User } from '#base/public-types/user';
 import apolloConfig from '#base/public-configs/apollo';
+import { trackingId, gaConfig } from '#base/public-configs/googleAnalytics';
 
 import styles from './styles.css';
-
-// TODO:
-// 1. Apollo provider
-// 2. check anti click jacking
-// 3. generalize permissions
 
 function transformUser(user: User | undefined) {
     if (isNotDefined(user)) {
         return null;
     }
 
+    // TODO: this requires
+    // id: userId,
+    // isSuperuser
+    // email: username
+    // name: displayName
     return {
         ...user,
         id: String(user.id),
@@ -40,6 +42,13 @@ function transformUser(user: User | undefined) {
 if (sentryConfig) {
     init(sentryConfig);
 }
+
+ReactGA.initialize(trackingId, gaConfig);
+browserHistory.listen((location) => {
+    const page = location.pathname ?? window.location.pathname;
+    ReactGA.set({ page });
+    ReactGA.pageview(page);
+});
 
 const apolloClient = new ApolloClient(apolloConfig);
 
