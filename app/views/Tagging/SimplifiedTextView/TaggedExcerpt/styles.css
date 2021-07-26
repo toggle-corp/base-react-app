@@ -25,3 +25,18 @@
     }
 }
 
+
+.diff-excerpt-popup {
+    width: 20rem;
+    max-width: unset!important;
+
+    .content {
+        padding: calc(var(--dui-spacing-medium) - var(--dui-spacing-small));
+
+        .excerpt {
+            .text {
+                padding: var(--dui-spacing-small);
+            }
+        }
+    }
+}
