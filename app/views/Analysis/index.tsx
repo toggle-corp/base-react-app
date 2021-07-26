@@ -1,7 +1,7 @@
 import React from 'react';
 import { _cs } from '@togglecorp/fujs';
 
-import PageContent from '#base/public-components/PageContent';
+import PageContent from '#components/PageContent';
 
 import styles from './styles.css';
 

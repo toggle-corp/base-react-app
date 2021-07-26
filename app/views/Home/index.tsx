@@ -14,7 +14,7 @@ import {
     SelectInput,
 } from '@the-deep/deep-ui';
 
-import PageContent from '#base/public-components/PageContent';
+import PageContent from '#components/PageContent';
 
 import styles from './styles.css';
 
