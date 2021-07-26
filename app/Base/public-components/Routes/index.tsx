@@ -8,13 +8,23 @@ function Routes() {
         <Switch>
             <Route
                 exact
-                path={routes.dashboard.path}
-                render={routes.dashboard.load}
+                path={routes.home.path}
+                render={routes.home.load}
             />
             <Route
                 exact
-                path={routes.about.path}
-                render={routes.about.load}
+                path={routes.tagging.path}
+                render={routes.tagging.load}
+            />
+            <Route
+                exact
+                path={routes.analysis.path}
+                render={routes.analysis.load}
+            />
+            <Route
+                exact
+                path={routes.explore.path}
+                render={routes.explore.load}
             />
             <Route
                 exact

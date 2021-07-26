@@ -3,24 +3,42 @@ import { wrap } from '#base/private-utils/routes';
 import styles from './styles.css';
 
 const routes = {
-    dashboard: wrap({
+    home: wrap({
         path: '/',
-        title: 'Dashboard',
+        title: 'Home',
         navbarVisibility: true,
-        component: lazy(() => import('#base/components/PreloadMessage')),
+        component: lazy(() => import('#views/Home')),
         componentProps: {
-            content: 'Dashboard',
             className: styles.view,
         },
         visibility: 'is-authenticated',
     }),
-    about: wrap({
-        path: '/about/',
-        title: 'About',
+    tagging: wrap({
+        path: '/tagging/',
+        title: 'Tagging',
         navbarVisibility: true,
-        component: lazy(() => import('#base/components/PreloadMessage')),
+        component: lazy(() => import('#views/Tagging')),
         componentProps: {
-            content: 'About',
+            className: styles.view,
+        },
+        visibility: 'is-authenticated',
+    }),
+    analysis: wrap({
+        path: '/analysis/',
+        title: 'Analysis',
+        navbarVisibility: true,
+        component: lazy(() => import('#views/Analysis')),
+        componentProps: {
+            className: styles.view,
+        },
+        visibility: 'is-authenticated',
+    }),
+    explore: wrap({
+        path: '/explore/',
+        title: 'Explore DEEP',
+        navbarVisibility: true,
+        component: lazy(() => import('#views/ExploreDeep')),
+        componentProps: {
             className: styles.view,
         },
         visibility: 'is-authenticated',
