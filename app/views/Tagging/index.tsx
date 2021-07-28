@@ -4,12 +4,8 @@ import {
     randomString,
 } from '@togglecorp/fujs';
 
-<<<<<<< HEAD:app/views/Tagging/index.tsx
 import PageContent from '#components/PageContent';
-=======
-import PageContent from '#app/public-components/PageContent';
 import SimplifiedTexView, { Entry } from './SimplifiedTextView';
->>>>>>> 0d67b22 (Add simplified text view):src/views/Tagging/index.tsx
 
 import styles from './styles.css';
 
@@ -31,7 +27,8 @@ Dr Yasir Arafat is a medical doctor and public health professional, providing te
 Save the Children is calling for urgent collective action to close the global vaccine divide between wealthy countries and poorer countries, by ensuring countries have access to vaccines through COVAX and sharing the know-how, information, and technology needed for countries to manufacture the vaccine themselves.
 `;
 
-const defaultEntries = [
+const defaultEntries: Entry[] = [
+    /*
     {
         clientId: '1',
         excerpt: 'Save the Children is calling for urgent collective action',
@@ -47,6 +44,7 @@ const defaultEntries = [
         excerpt: 'spreading like wildfire in Southeast Asia wooohoo',
         droppedExcerpt: 'spreading like wildfire in Southeast Asia',
     },
+    */
 ];
 
 interface Props {
@@ -61,12 +59,19 @@ function Tagging(props: Props) {
     const [activeEntry, setActiveEntry] = React.useState<string | undefined>();
     const [entries, setEntries] = React.useState<Entry[]>(defaultEntries);
 
+    const handleActiveEntryClear = React.useCallback(
+        () => {
+            setActiveEntry(undefined);
+        },
+        [],
+    );
+
     const handleAddButtonClick = React.useCallback((excerpt) => {
         window.getSelection()?.removeAllRanges();
         setEntries((oldEntries) => ([
             ...oldEntries,
             {
-                clientId: randomString(8),
+                clientId: randomString(),
                 excerpt,
                 droppedExcerpt: excerpt,
             },
@@ -83,6 +88,8 @@ function Tagging(props: Props) {
                 text={simplifiedText}
                 entries={entries}
                 onExcerptClick={setActiveEntry}
+                onApproveButtonClick={handleActiveEntryClear}
+                onDiscardButtonClick={handleActiveEntryClear}
                 activeEntryClientId={activeEntry}
                 onAddButtonClick={handleAddButtonClick}
             />

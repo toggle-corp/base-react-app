@@ -1,7 +1,7 @@
 import React from 'react';
 import { IoAddCircle } from 'react-icons/io5';
 import { useTextSelection } from 'use-text-selection';
-import { _cs } from '@togglecorp/fujs';
+import { _cs, isDefined } from '@togglecorp/fujs';
 import { Button } from '@the-deep/deep-ui';
 
 import TaggedExcerpt from './TaggedExcerpt';
@@ -18,14 +18,6 @@ interface Split {
     endIndex: number;
     excerpt: string;
     droppedExcerpt: string;
-}
-
-function filterOutNull<D, FD extends Exclude<D, null>>(list: D[] | undefined): FD[] {
-    if (!list) {
-        return [];
-    }
-
-    return list.filter((d) => !!d) as FD[];
 }
 
 interface Props {
@@ -59,41 +51,43 @@ function SimplifiedTextView(props: Props) {
 
     // TODO: Remove overlapping splits if necessary
     const splits = React.useMemo(() => (
-        filterOutNull(
-            entries?.map((entry) => {
-                if (!text || !entry.droppedExcerpt) {
-                    return null;
-                }
+        entries?.map((entry) => {
+            if (!text || !entry.droppedExcerpt) {
+                return null;
+            }
 
-                const startIndex = text.indexOf(entry.droppedExcerpt);
-                if (startIndex === -1) {
-                    return null;
-                }
+            const startIndex = text.indexOf(entry.droppedExcerpt);
+            if (startIndex === -1) {
+                return null;
+            }
 
-                const endIndex = startIndex + entry.droppedExcerpt.length;
+            const endIndex = startIndex + entry.droppedExcerpt.length;
 
-                return ({
-                    startIndex,
-                    endIndex,
-                    entryId: entry.clientId,
-                    excerpt: entry.excerpt,
-                    droppedExcerpt: entry.droppedExcerpt,
-                });
-            }),
-        ).sort((a: Split, b: Split) => (
-            a.startIndex - b.startIndex
-        ))
+            return ({
+                startIndex,
+                endIndex,
+                entryId: entry.clientId,
+                excerpt: entry.excerpt,
+                droppedExcerpt: entry.droppedExcerpt,
+            });
+        })
+            .filter(isDefined)
+            .sort((a: Split, b: Split) => (
+                a.startIndex - b.startIndex
+            )) ?? []
     ), [text, entries]);
 
     let children: React.ReactNode = null;
     if (!text || splits.length === 0) {
         children = text;
     } else {
+        const firstSplit = splits[0];
+        const lastSplit = splits[splits.length - 1];
         children = (
             <>
-                {splits[0].startIndex > 0 && (
+                {firstSplit.startIndex > 0 && (
                     <span>
-                        {text.substring(0, splits[0].startIndex)}
+                        {text.substring(0, firstSplit.startIndex)}
                     </span>
                 )}
                 {splits.map((split, i) => (
@@ -117,9 +111,9 @@ function SimplifiedTextView(props: Props) {
                         />
                     </React.Fragment>
                 ))}
-                {splits[splits.length - 1].endIndex < text.length && (
+                {lastSplit.endIndex < text.length && (
                     <span>
-                        {text.substring(splits[splits.length - 1].endIndex, text.length)}
+                        {text.substring(lastSplit.endIndex, text.length)}
                     </span>
                 )}
             </>
@@ -151,13 +145,10 @@ function SimplifiedTextView(props: Props) {
             top: clientRect.top - parentRect.top + parent.scrollTop,
         };
 
-        if (containerRef.current && clientRect) {
-            if (clientRect.x > (parent.offsetWidth / 2)) {
-                pos.right = (parentRect.width + parentRect.left)
-                    - (clientRect.left + clientRect.width);
-            } else {
-                pos.left = clientRect.left - parentRect.left;
-            }
+        if (!containerRef.current || !clientRect) {
+            pos.left = clientRect.left - parentRect.left;
+        } else if (clientRect.x > (parent.offsetWidth / 2)) {
+            pos.right = (parentRect.width + parentRect.left) - (clientRect.left + clientRect.width);
         } else {
             pos.left = clientRect.left - parentRect.left;
         }
