@@ -3,7 +3,7 @@ import { reactRouterV5Instrumentation, BrowserOptions } from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
 
 import browserHistory from '#base/configs/history';
-import routes from '#base/public-configs/routes';
+import routes from '#base/configs/routes';
 
 const appCommitHash = process.env.REACT_APP_COMMITHASH;
 const appName = process.env.MY_APP;

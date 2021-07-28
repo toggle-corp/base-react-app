@@ -13,7 +13,7 @@ import {
 
 import SmartNavLink from '#base/components/SmartNavLink';
 import { UserContext } from '#base/context/UserContext';
-import route from '#base/public-configs/routes';
+import route from '#base/configs/routes';
 
 import styles from './styles.css';
 

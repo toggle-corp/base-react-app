@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { wrap } from '#base/private-utils/routes';
+import { wrap } from '#base/utils/routes';
 import styles from './styles.css';
 
 const routes = {

@@ -131,6 +131,7 @@ module.exports = () => {
             new Dotenv({
                 safe: true,
                 expand: true,
+                allowEmptyValues: true,
                 defaults: false,
                 path: getPath('.env'),
                 systemvars: !!isProduction, // NOTE: need to filter system variables

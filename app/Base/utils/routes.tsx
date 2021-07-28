@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Page, { Props as PageProps } from '#base/private-components/Page';
+import Page, { Props as PageProps } from '#base/components/Page';
 
 // eslint-disable-next-line import/prefer-default-export
 export function wrap<T extends string, K extends { className?: string }>(

@@ -8,18 +8,18 @@ import ReactGA from 'react-ga';
 
 import '@the-deep/deep-ui/build/index.css';
 
-import Init from '#base/public-components/Init';
+import Init from '#base/components/Init';
 import PreloadMessage from '#base/components/PreloadMessage';
 import browserHistory from '#base/configs/history';
 import sentryConfig from '#base/configs/sentry';
 import { UserContext, UserContextInterface } from '#base/context/UserContext';
-import AuthPopup from '#base/private-components/AuthPopup';
-import { sync } from '#base/private-hooks/useAuthSync';
-import Navbar from '#base/public-components/Navbar';
-import Routes from '#base/public-components/Routes';
-import { User } from '#base/public-types/user';
-import apolloConfig from '#base/public-configs/apollo';
-import { trackingId, gaConfig } from '#base/public-configs/googleAnalytics';
+import AuthPopup from '#base/components/AuthPopup';
+import { sync } from '#base/hooks/useAuthSync';
+import Navbar from '#base/components/Navbar';
+import Routes from '#base/components/Routes';
+import { User } from '#base/types/user';
+import apolloConfig from '#base/configs/apollo';
+import { trackingId, gaConfig } from '#base/configs/googleAnalytics';
 
 import styles from './styles.css';
 
@@ -197,7 +197,7 @@ function Base() {
                 >
                     {/*
                       * NOTE: styling for view is located in
-                      * `/public-configs/routes/styles.css`
+                      * `/configs/routes/styles.css`
                       */}
                     <Routes />
                 </Suspense>

@@ -3,8 +3,8 @@ import { Redirect } from 'react-router-dom';
 
 import PreloadMessage from '#base/components/PreloadMessage';
 import { UserContext } from '#base/context/UserContext';
-import PageTitle from '#base/private-components/PageTitle';
-import { User } from '#base/public-types/user';
+import PageTitle from '#base/components/PageTitle';
+import { User } from '#base/types/user';
 
 import styles from './styles.css';
 

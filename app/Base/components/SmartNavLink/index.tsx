@@ -5,7 +5,7 @@ import { _cs } from '@togglecorp/fujs';
 import useRouteMatching, {
     RouteData,
     Attrs,
-} from '#base/private-hooks/useRouteMatching';
+} from '#base/hooks/useRouteMatching';
 
 import styles from './styles.css';
 

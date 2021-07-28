@@ -10,7 +10,7 @@ import { mapToMap, isDefined } from '@togglecorp/fujs';
 import {
     serverlessEndpoint,
     wsEndpoint,
-} from '#base/public-configs/restRequest';
+} from '#base/configs/restRequest';
 
 function getVersionedUrl(endpoint: string, url: string) {
     const versionString = '/v2';
@@ -109,6 +109,7 @@ export const processDeepUrls: DeepContextInterface['transformUrl'] = (url) => {
     if (/^https?:\/\//i.test(url)) {
         return url;
     }
+    // eslint-disable-next-line no-console
     console.error('Url should start with http/https or a defined scope', url);
     return url;
 };

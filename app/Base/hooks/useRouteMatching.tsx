@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 import UserContext from '#base/context/UserContext';
-import { wrap } from '#base/private-utils/routes';
+import { wrap } from '#base/utils/routes';
 
 export interface Attrs {
     [key: string]: string | number | undefined;

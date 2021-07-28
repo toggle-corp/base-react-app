@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import routes from '#base/public-configs/routes';
+import routes from '#base/configs/routes';
 
 function Routes() {
     return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button } from '@the-deep/deep-ui';
 
-import useAuthSync from '#base/private-hooks/useAuthSync';
+import useAuthSync from '#base/hooks/useAuthSync';
 import styles from './styles.css';
 
 function AuthPopup() {

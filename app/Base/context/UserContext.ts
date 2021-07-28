@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-import { User } from '#base/public-types/user';
+import { User } from '#base/types/user';
 
 export interface UserContextInterface {
     user: User | undefined;

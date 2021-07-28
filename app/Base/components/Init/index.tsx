@@ -4,7 +4,7 @@ import { removeNull } from '@togglecorp/toggle-form';
 
 import { UserContext } from '#base/context/UserContext';
 import PreloadMessage from '#base/components/PreloadMessage';
-import { checkErrorCode } from '#base/public-utils/apollo';
+import { checkErrorCode } from '#base/utils/apollo';
 
 import {
     MeQuery,
@@ -53,6 +53,13 @@ function Init(props: Props) {
             );
 
             setErrored(!authError);
+            /*
+            setUser({
+                id: '12',
+                displayName: 'Ram',
+                permissions: [],
+            });
+            */
             setReady(true);
         },
     });
