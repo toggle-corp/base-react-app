@@ -12,6 +12,7 @@ import {
     Container,
     ButtonLikeLink,
     SelectInput,
+    useInputState,
 } from '@the-deep/deep-ui';
 
 import PageContent from '#components/PageContent';
@@ -32,9 +33,8 @@ interface Props {
 }
 
 function Home(props: Props) {
-    const {
-        className,
-    } = props;
+    const { className } = props;
+    const [project, setProject] = useInputState<number | undefined>(undefined);
 
     return (
         <PageContent
@@ -107,6 +107,8 @@ function Home(props: Props) {
                             keySelector={projectKeySelector}
                             labelSelector={projectLabelSelector}
                             variant="general"
+                            value={project}
+                            onChange={setProject}
                         />
                         <ButtonLikeLink to="#">
                             Set up a new Project
