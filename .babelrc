@@ -13,9 +13,10 @@
             "root": ["."],
             "extensions": [".js", ".jsx", ".ts", ".tsx"],
             "alias": {
-                "#components": "./src/components",
-                "#views": "./src/views",
-                "#app": "./src/App",
+                "#generated": "./generated",
+                "#components": "./app/components",
+                "#views": "./app/views",
+                "#base": "./app/Base",
             },
         }],
 
