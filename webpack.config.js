@@ -35,7 +35,7 @@ module.exports = () => {
         devtool: isProduction
             ? 'source-map'
             : 'eval-cheap-source-map',
-        entry: getPath('src/index.tsx'),
+        entry: getPath('app/index.tsx'),
         node: false,
         resolve: {
             extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -60,7 +60,7 @@ module.exports = () => {
             rules: [
                 {
                     test: /\.[tj]sx?$/,
-                    include: getPath('src/'),
+                    include: getPath('app/'),
                     exclude: /node_modules/,
                     loader: 'babel-loader',
                     options: {
@@ -71,7 +71,7 @@ module.exports = () => {
                 },
                 {
                     test: /\.css$/,
-                    include: getPath('src/'),
+                    include: getPath('app/'),
                     exclude: /node_modules/,
                     use: [
                         isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
@@ -107,7 +107,7 @@ module.exports = () => {
                 {
                     test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
                     exclude: /(node_modules)/,
-                    include: getPath('src/'),
+                    include: getPath('app/'),
                     type: 'asset/resource',
                     /*
                     options: {
@@ -131,6 +131,7 @@ module.exports = () => {
             new Dotenv({
                 safe: true,
                 expand: true,
+                allowEmptyValues: true,
                 defaults: false,
                 path: getPath('.env'),
                 systemvars: !!isProduction, // NOTE: need to filter system variables
@@ -144,14 +145,15 @@ module.exports = () => {
                     : 'css/[id].css',
             }),
             new HtmlWebpackPlugin({
-                favicon: getPath('src/favicon.ico'),
-                template: getPath('src/index.html'),
+                favicon: getPath('app/favicon.ico'),
+                template: getPath('app/index.html'),
                 filename: 'index.html',
                 title: pkg.name,
                 meta: {
                     charset: 'UTF-8',
                     viewport: 'width=device-width, initial-scale=1.0',
                     description: pkg.description,
+                    referrer: 'origin',
                 },
             }),
             new WebpackPwaManifest({
@@ -166,7 +168,7 @@ module.exports = () => {
                 scope: '/',
                 icons: [
                     {
-                        src: getPath('src/favicon.png'),
+                        src: getPath('app/favicon.png'),
                         sizes: [96, 128, 192, 256, 384, 512],
                         destination: 'icons',
                     },
@@ -180,10 +182,11 @@ module.exports = () => {
             }),
             new StyleLintPlugin({
                 files: ['**/*.css'],
-                context: getPath('src/'),
+                context: getPath('app/'),
             }),
             new ESLintPlugin({
                 extensions: ['.js', '.jsx', '.ts', '.tsx'],
+                reportUnusedDisableDirectives: "warn",
             }),
         ],
     };
@@ -252,7 +255,7 @@ module.exports = () => {
         {
             devServer: {
                 host: '0.0.0.0',
-                port: 3000,
+                port: 3080,
                 watchContentBase: true,
                 overlay: true,
                 hot: true,
@@ -262,7 +265,7 @@ module.exports = () => {
                     ignored: /node_modules/,
                 },
                 clientLogLevel: 'none',
-                // publicPath: '/',
+                publicPath: '/',
             },
             plugins: [
                 new HotModuleReplacementPlugin(),

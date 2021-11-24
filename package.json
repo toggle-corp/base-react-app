@@ -3,14 +3,19 @@
     "version": "1.0.0",
     "description": "Base Reacct Application",
     "scripts": {
-        "lint": "eslint ./src",
-        "typecheck": "tsc",
         "generate": "env-cmd -f .env graphql-codegen --config codegen.yml",
+        "lint": "eslint ./app --report-unused-disable-directives",
+        "typecheck": "tsc",
         "build": "webpack --mode=production --node-env=production",
         "build:dev": "webpack --mode=development",
         "build:prod": "webpack --mode=production --node-env=production",
         "watch": "webpack --watch",
-        "start": "webpack serve --mode=development"
+        "start": "webpack serve --mode=development",
+        "initialize": "mkdir -p generated && yes n | cp -i type.template.tsx generated/types.tsx 2>/dev/null",
+        "prelint": "yarn initialize",
+        "pretypecheck": "yarn initialize",
+        "prebuild": "yarn initialize",
+        "prestart": "yarn initialize"
     },
     "sideEffects": [
         "@the-deep/deep-ui/build/index.css"
@@ -28,7 +33,11 @@
     "homepage": "https://github.com/togglecorp/base-react-app#readme",
     "dependencies": {
         "@apollo/client": "^3.3.21",
-        "@togglecorp/fujs": "^1.9.2-beta.0",
+        "@sentry/react": "^6.9.0",
+        "@sentry/tracing": "^6.9.0",
+        "@the-deep/deep-ui": "^1.5.12",
+        "@togglecorp/fujs": "^1.9.2",
+        "@togglecorp/toggle-form": "^1.2.1",
         "apollo-link": "^1.2.14",
         "apollo-link-batch-http": "^1.2.14",
         "apollo-link-rest": "^0.8.0-beta.0",
@@ -37,8 +46,10 @@
         "core-js": "3",
         "graphql": "^15.5.1",
         "graphql-anywhere": "^4.2.7",
-        "react": "^17.0.1",
-        "react-dom": "^17.0.1"
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-ga": "^3.3.0",
+        "react-icons": "^4.3.1"
     },
     "devDependencies": {
         "@babel/core": "^7.13.10",
@@ -55,9 +66,6 @@
         "@graphql-codegen/typescript": "^1.23.0",
         "@graphql-codegen/typescript-operations": "^1.18.4",
         "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
-        "@sentry/react": "^6.9.0",
-        "@sentry/tracing": "^6.9.0",
-        "@the-deep/deep-ui": "^1.4.8-beta.1",
         "@types/apollo-upload-client": "^14.1.0",
         "@types/react": "^17.0.14",
         "@types/react-dom": "^17.0.9",

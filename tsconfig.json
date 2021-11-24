@@ -4,7 +4,7 @@
         "jsx": "react",
         "module": "esnext",
         "noEmit": true,
-        "rootDir": "./src",
+        "rootDir": ".",
         "target": "esnext",
 
         "strict": true,
@@ -15,9 +15,10 @@
         "moduleResolution": "node",
 
         "paths": {
-            "#components/*": ["./src/components/*"],
-            "#views/*": ["./src/views/*"],
-            "#app/*": ["./src/App/*"],
+            "#generated/*": ["./generated/*"],
+            "#components/*": ["./app/components/*"],
+            "#views/*": ["./app/views/*"],
+            "#base/*": ["./app/Base/*"],
         },
 
         "noFallthroughCasesInSwitch": true,
@@ -30,6 +31,8 @@
         "skipLibCheck": true
     },
     "include": [
-        "src"
+        "./generated/types.tsx",
+        "./app/declarations",
+        "./app/index.tsx"
     ]
 }
