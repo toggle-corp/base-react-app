@@ -24,7 +24,8 @@ const login = wrap({
     visibility: 'is-not-authenticated',
 });
 const home = wrap({
-    path: '/',
+    // NOTE: the first url is /index.html for addons
+    path: '/index.html',
     title: 'Home',
     navbarVisibility: true,
     component: lazy(() => import('#views/Template')),
