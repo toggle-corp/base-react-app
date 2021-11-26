@@ -2,8 +2,9 @@ FROM node:17-buster-slim AS base
 
 MAINTAINER togglecorp info@togglecorp.com
 
-RUN apt update -y \
-    && apt install -y --no-install-recommends git bash
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends \
+        git bash python3 g++ make
 
 WORKDIR /code
 
