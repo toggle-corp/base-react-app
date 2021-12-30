@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
     <head>
         <title><%= process.env.MY_APP %></title>
         <style>
@@ -12,6 +12,8 @@
 
             * {
                 box-sizing: border-box;
+                scrollbar-color: var(--dui-color-foreground-scrollbar) var(--dui-color-background-scrollbar);
+                scrollbar-width: thin;
             }
 
             ::-webkit-scrollbar {
