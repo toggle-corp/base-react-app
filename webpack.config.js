@@ -121,8 +121,9 @@ module.exports = () => {
         },
         plugins: [
             new EnvironmentPlugin({
-                MY_APP: pkg.name,
-                MY_APP_DESCRIPTION: pkg.description,
+                MY_APP_ID: pkg.name,
+                MY_APP_NAME: pkg.longName,
+                // MY_APP_DESCRIPTION: pkg.description,
 
                 REACT_APP_VERSION: gitRevisionPlugin.version(),
                 REACT_APP_COMMITHASH: gitRevisionPlugin.commithash(),
@@ -186,7 +187,7 @@ module.exports = () => {
             }),
             new ESLintPlugin({
                 extensions: ['.js', '.jsx', '.ts', '.tsx'],
-                reportUnusedDisableDirectives: "warn",
+                reportUnusedDisableDirectives: 'warn',
             }),
         ],
     };
@@ -256,14 +257,15 @@ module.exports = () => {
             devServer: {
                 host: '0.0.0.0',
                 port: 3080,
-                watchContentBase: true,
                 overlay: true,
                 hot: true,
                 liveReload: false,
                 historyApiFallback: true,
+                watchContentBase: true,
                 watchOptions: {
                     ignored: /node_modules/,
                 },
+
                 clientLogLevel: 'none',
                 publicPath: '/',
             },
