@@ -6,7 +6,7 @@ import browserHistory from '#base/configs/history';
 import routes from '#base/configs/routes';
 
 const appCommitHash = process.env.REACT_APP_COMMITHASH;
-const appName = process.env.MY_APP;
+const appName = process.env.MY_APP_ID;
 
 const sentryDsn = process.env.REACT_APP_SENTRY_DSN;
 

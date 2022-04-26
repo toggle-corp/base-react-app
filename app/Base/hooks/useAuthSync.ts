@@ -1,7 +1,7 @@
 import { useCallback, useState, useEffect } from 'react';
 
-const AUTH_STATE = `${process.env.MY_APP}-auth-state`;
-const LAST_USER = `${process.env.MY_APP}-lastuser-state`;
+const AUTH_STATE = `${process.env.MY_APP_ID}-auth-state`;
+const LAST_USER = `${process.env.MY_APP_ID}-lastuser-state`;
 
 let authenticated = false;
 let user: string | undefined;
